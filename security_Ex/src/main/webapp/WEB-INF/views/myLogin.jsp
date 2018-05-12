@@ -21,7 +21,10 @@
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<button>LOGIN</button>
 	</form>
-	
+	<form action="/myLogout" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<button>LOGOUT</button>
+	</form>
 	
 	<ul>
 	<%

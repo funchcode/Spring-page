@@ -7,6 +7,7 @@
 
 	<security:http auto-config="true" use-expressions="false">
 		<security:form-login login-page="/myLogin" />
+		<security:logout logout-url="/myLogout" delete-cookies="JSESSIONID" invalidate-session="true"/>
 		<security:intercept-url pattern="/sample/member" access="ROLE_MEMBER"/>
 		<security:intercept-url pattern="/sample/manager" access="ROLE_MANAGER"/>
 		<security:intercept-url pattern="/sample/admin" access="ROLE_ADMIN"/>
