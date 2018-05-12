@@ -13,4 +13,6 @@
 		select * from tbl_member_secu m inner join tbl_member_auth auth 
 		on m.uid = auth.uid where m.uid = #{uid}
 	</select>
+	
+	
 </mapper>    
