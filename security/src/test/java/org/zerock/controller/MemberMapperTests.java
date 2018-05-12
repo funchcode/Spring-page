@@ -38,6 +38,7 @@ public class MemberMapperTests {
 			if(i>=0) {
 				MemberAuthVO uvo = new MemberAuthVO();
 				uvo.setUid("uid"+i);
+				uvo.setAuth("ROLE_USER");
 				mapper.insertAuth(uvo);
 			}
 			if(i>=50) {
