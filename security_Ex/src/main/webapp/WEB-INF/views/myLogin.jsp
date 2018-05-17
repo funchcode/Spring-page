@@ -32,6 +32,7 @@
 
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();
+			
 			Object value = request.getAttribute(key);
 	%>
 	<li>
