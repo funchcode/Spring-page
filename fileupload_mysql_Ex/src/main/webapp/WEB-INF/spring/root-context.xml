@@ -15,7 +15,7 @@
 		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.15:3306/jr01?useSSL=false"></property> -->
 		
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://192.168.1.9/jr01"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://172.30.121.9/jr01"></property>
 		 
 		<property name="username" value="study"></property>
 		<property name="password" value="study"></property>
