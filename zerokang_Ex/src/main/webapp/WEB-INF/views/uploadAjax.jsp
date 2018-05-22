@@ -34,7 +34,7 @@ $(document).ready(function(){
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	var maxSize = 5242880;
 	
-	function checkExtenstion(fileName, fileSize) {
+	function checkExtension(fileName, fileSize) {
 		if(fileSize >= maxSize) {
 			alert("Over capacity");
 			return false;
@@ -45,15 +45,36 @@ $(document).ready(function(){
 		}
 		return true;
 	}
+	
+	var cloneObj = $(".uploadDiv").clone();
+	var uploadResult = $(".uploadResult ul");
 
+	function showUploadedFile(uploadResultArr) {
+		var str = "";
+		$(uploadResultArr).each(function(i, obj){
+			if(!obj.image) {
+				var fileCallPath = encodeURIComponent(obj.uploadPath +"/"+ obj.uuid +"_"+obj.fileName);
+				console.log("+prev+ replace RegExp : "+fileCallPath);
+				var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+				console.log("+next+ replace RegExp : "+fileLink);
+			}else{
+				var fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
+				var originPath = obj.uploadPath +"\\"+obj.uuid+"_"+obj.fileName;
+				originPath = originPath.replace(new RegExp(/\\/g),"/");
+			}
+		});
+	}
+	
 	$("#uploadBtn").on("click", function(e){
 		var formData = new FormData();
 		var inputFile = $("input[name='uploadFile']");
 		var files = inputFile[0].files;
-		console.dir(inputFile);
-		console.log(inputFile[0].files);
-		for(var i = 0 ; files.length ; i++) {
-			if(!checkExtenstion(files[i].name, files[i].size)){
+		console.dir("input File Object dir : "+inputFile);
+		console.log("input File first file : "+inputFile[0].files);
+		console.dir("input File first file dir : "+inputFile[0]);
+		console.log("file Object name / size : "+files[0].name);
+		for(var i = 0 ; i < files.length ; i++) {
+			if(!checkExtension(files[i].name, files[i].size)){
 				return false;
 			}
 			formData.append("uploadFile",files[i]);
