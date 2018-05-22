@@ -30,6 +30,7 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 <script>
+$(document).ready(function(){
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	var maxSize = 5242880;
 	
@@ -52,12 +53,34 @@
 		console.dir(inputFile);
 		console.log(inputFile[0].files);
 		for(var i = 0 ; files.length ; i++) {
-			if(!checkExtension(files[i].name, files[i].size)){
+			if(!checkExtenstion(files[i].name, files[i].size)){
 				return false;
 			}
 			formData.append("uploadFile",files[i]);
 		}
+		$.ajax({
+			url : '/uploadAjaxAction',
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			dataType: 'json',
+			success : function(result){
+				console.log(result);
+				showUploadedFile(result);
+				$(".uploadDiv").html(cloneObj.html());
+			}
+		});
 	});
+	
+	$(".bigPictureWrapper").on("click", function(e){
+		$(".bigPicture").animate({width:'0%', height:'0%'}, 1000);
+		setTimeout(function(){
+			$(".bigPictureWrapper").hide();
+		}, 1000);
+	});	
+});
+
 </script>  	
 	
 </body>
